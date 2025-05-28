@@ -1,30 +1,25 @@
-import React from 'react'
-import Navbar from '../component/Navbar'
-import Sidebar from '../component/Sidebar'
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
+// pages/Dashboard.jsx
+import React, { useState } from 'react';
+import Navbar from '../component/Navbar';
+import Sidebar from '../component/Sidebar';
 import { useAppContext } from '../context/AppContext';
-import Productlist from "../component/Productlist.jsx";
+import Productlist from '../component/Productlist';
 
 const Dashboard = () => {
-  const [activeTab, setActiveTab] = useState("New");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [activeTab, setActiveTab] = useState('New');
+  const [searchTerm, setSearchTerm] = useState('');
+  const { handlernavigate } = useAppContext();
 
-  const {handlernavigate} = useAppContext();
 
-
+  
 
   return (
     <div className="min-h-screen bg-gray-100 pt-28">
-
       <Navbar activeTab={activeTab} userName="Praveen Patel" />
       <div className="flex">
-        {/* Sidebar */}
         <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-
-        {/* Right Section */}
         <div className="ml-64 flex-1 h-[calc(100vh-5rem)] overflow-y-auto p-6">
-          {/* Top Input and Button */}
           <div className="flex items-center justify-between mb-6">
             <input
               type="text"
@@ -41,18 +36,13 @@ const Dashboard = () => {
               Create Project
             </button>
           </div>
-
-          {/* Content Section */}
           <div>
-               <Productlist/>
+            <Productlist />
           </div>
         </div>
       </div>
-
-
-
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
