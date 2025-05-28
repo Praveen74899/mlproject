@@ -5,7 +5,7 @@ const Project = require('../models/Project');
 // Controller function
 exports.createProject = async (req, res) => {
   try {
-   const {
+    const {
       projectName,
       projectType,
       category,
@@ -16,16 +16,17 @@ exports.createProject = async (req, res) => {
       endClient,
     } = req.body;
 
-     if (!projectName || !projectType || !category || !hours || !dateReceived || !dateDelivered || !contactPerson || !endClient) {
+
+    if (!projectName || !projectType || !category || !hours || !dateReceived || !dateDelivered || !contactPerson || !endClient) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-   // Check duplicate
+    // Check duplicate
     const existingProject = await Project.findOne({ projectName });
     if (existingProject) {
       return res.status(400).json({ message: 'Project name already exists. Choose another name.' });
     }
-     // Create new project
+    // Create new project
     const newProject = new Project({
       projectName,
       projectType,
@@ -47,11 +48,22 @@ exports.createProject = async (req, res) => {
 
 
   } catch (error) {
-     console.error('Error creating project:', error);  
+    console.error('Error creating project:', error);
     res.status(500).json({
       message: 'Error creating project',
       error: error.message
-     
+
     });
+  }
+};
+
+
+
+exports.getAllProject = async (req, res) => {
+  try {
+    const projects = await Project.find();
+    res.status(200).json(projects);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching projects", error });
   }
 };

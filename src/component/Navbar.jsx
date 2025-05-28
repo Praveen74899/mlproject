@@ -4,8 +4,8 @@ import { useAppContext } from '../context/AppContext';
 
 const Navbar = ({ activeTab, userName = "User" }) => {
 
-    const { handlernavigate } = useAppContext();
-    
+    const { handlernavigate,navigate} = useAppContext();
+
 
   return (
 <div className="flex items-center justify-between p-6 bg-gray-400 gap-6 fixed top-0 left-0 w-full z-50 h-20">
@@ -31,6 +31,7 @@ const Navbar = ({ activeTab, userName = "User" }) => {
         <button
           className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
           title="Logout"
+       
         >
           Logout
         </button>

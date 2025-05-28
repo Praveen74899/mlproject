@@ -21,7 +21,8 @@ export const AppContextProvider = ({ children }) => {
     setShowUserLogin,
     isLoggedIn,
     setIsLoggedIn,
-    handlernavigate
+    handlernavigate,
+    navigate
   };
 
   return (

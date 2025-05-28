@@ -13,7 +13,9 @@ app.use(cors());
 
 
 //routes
+
 app.use('/api',projectRoutes);
+
 
 connectDB();
 

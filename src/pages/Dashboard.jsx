@@ -4,6 +4,8 @@ import Sidebar from '../component/Sidebar'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
+import Productlist from "../component/Productlist.jsx";
+
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("New");
   const [searchTerm, setSearchTerm] = useState("");
@@ -42,8 +44,7 @@ const Dashboard = () => {
 
           {/* Content Section */}
           <div>
-            <h2 className="text-xl font-bold">{activeTab} Projects</h2>
-            <p className="text-gray-600 mt-2">Project list will appear here...</p>
+               <Productlist/>
           </div>
         </div>
       </div>
