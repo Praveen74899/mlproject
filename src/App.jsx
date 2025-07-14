@@ -1,29 +1,20 @@
-// App.js
-import { useAppContext } from './context/AppContext';
-import { Toaster } from 'react-hot-toast';
-import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import ProductForm from './component/ProductForm';
+import React from "react";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import ForgotPassword from "./pages/ForgotPassword";
+import { Router,Routes,Route } from "express";
 
-
-function App() {
-  const { isLoggedIn, setIsLoggedIn } = useAppContext();
-  return (
-    <>
-      <Toaster />
-
+const App = ()=>{
+return(
+    <Router>
         <Routes>
-          <Route path="/" element={isLoggedIn ? (<Navigate to="/dashboard" />) : (<Login setIsLoggedIn={setIsLoggedIn} />)} />
-          <Route path="/dashboard" element={isLoggedIn ? (<Dashboard />) : (<Navigate to="/" />)} />
-          <Route path="/productform" element={<ProductForm />} />
+            <Route path = "/login" element={<Login/>}/>
+              <Route path = "/signup" element={<Signup/>}/>
+                <Route path = "/forgot-password" element={<ForgotPassword/>}/>
+                  <Route path = "/reset-password/:token" element={<ResetPassword/>}/>
         </Routes>
-      
-    </>
-
-
-
-  );
+    </Router>
+)
 }
 
 export default App;

@@ -1,14 +1,32 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
-const onFinish = values => {
-  console.log('Success:', values);
-};
+
+
+const onFinish = async (values) => {
+    try{
+        const response = await fetch('http://localhost:5000/api/signup',{
+            method:'POST',
+        headers:{ 'Content-Type':'application/json'},
+        body:json.stringify(values),
+        });
+        const data = await response.json();
+        if(response.ok){
+            alert("signup sucesssfull")
+        } else{
+            alert(data.message || 'signu falied');
+        }
+
+    } catch(e){
+        alert("something went wrong")
+    }
+}
+
 const onFinishFailed = errorInfo => {
   console.log('Failed:', errorInfo);
 };
-const Login = () => (
+const Signup = () => (
   <Form
-    name="basic"
+    name="signupForm"
     labelCol={{ span: 8 }}
     wrapperCol={{ span: 16 }}
     style={{ maxWidth: 600 }}
@@ -18,9 +36,24 @@ const Login = () => (
     autoComplete="off"
   >
     <Form.Item
-      label="Username"
-      name="username"
+      label="firstName"
+      name="firstName"
       rules={[{ required: true, message: 'Please input your username!' }]}
+    >
+      <Input />
+    </Form.Item>
+
+    <Form.Item
+      label="Lastname"
+      name="lastName"
+      rules={[{ required: true, message: 'Please input your lastname!' }]}
+    >
+      <Input />
+    </Form.Item>
+    <Form.Item
+      label="Email"
+      name="email"
+      rules={[{ required: true, message: 'Please input your email!' }]}
     >
       <Input />
     </Form.Item>
@@ -44,4 +77,4 @@ const Login = () => (
     </Form.Item>
   </Form>
 );
-export default Login;
+export default Signup;
